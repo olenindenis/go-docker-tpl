@@ -6,7 +6,7 @@ WORKDIR /go/src/app
 
 COPY . .
 RUN go mod download && \
-    CGO_ENABLED=0 go build -v -o api cmd/api/main.go
+    CGO_ENABLED=0 go build -v -o api -ldflags="-s -w" cmd/api/main.go
 
 FROM gcr.io/distroless/base AS prod
 
